@@ -1,0 +1,226 @@
+/* =====================================================
+   POST IT SIMULATOR — index.css
+   Bootstrap 5 base + estilos propios
+   ===================================================== */
+
+/* ── Paleta de colores de las notas normales (rotatoria) ── */
+:root {
+  --note-0: #FFF176;   /* amarillo clásico */
+  --note-1: #A5D6A7;   /* verde menta      */
+  --note-2: #81D4FA;   /* azul celeste     */
+  --note-3: #FFCC80;   /* naranja suave    */
+  --note-4: #CE93D8;   /* lila             */
+  --note-importante: #EF5350; /* rojo       */
+
+  --shadow-note: 4px 6px 16px rgba(0, 0, 0, 0.22);
+  --bg-app: #616161;
+}
+
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-app);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ── Header ── */
+.app-header {
+  background-color: #424242;
+  border-bottom: 2px solid #212121;
+  padding: 0.9rem 1.4rem;
+}
+
+.app-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Formulario de agregar nota ── */
+.form-nota {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.form-nota .form-control {
+  background: #f5f5f5;
+  border: 1.5px solid #9E9E9E;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.75rem;
+  color: #212121;
+}
+
+.form-nota .form-control:focus {
+  border-color: #424242;
+  box-shadow: 0 0 0 3px rgba(66, 66, 66, 0.18);
+  outline: none;
+}
+
+.form-nota .form-control.is-invalid {
+  border-color: #EF5350;
+}
+
+.input-titulo  { flex: 0 0 200px; }
+.input-desc    { flex: 1 1 240px; min-width: 160px; }
+
+/* ── Checkbox importante ── */
+.check-importante {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #fff;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  padding-top: 0.5rem;
+}
+
+.check-importante input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #EF5350;
+  cursor: pointer;
+}
+
+/* ── Botón Agregar ── */
+.btn-agregar {
+  background: #212121;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.48rem 1.3rem;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-agregar:hover  { background: #000; }
+.btn-agregar:active { transform: scale(0.97); }
+
+/* ── Mensaje de error del formulario ── */
+.form-error {
+  color: #FFCDD2;
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+  width: 100%;
+}
+
+/* ── Área de notas ── */
+.notas-area {
+  padding: 1.4rem 1rem;
+}
+
+/* Estado vacío */
+.notas-vacias {
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 1rem;
+  padding: 3rem 0;
+  font-style: italic;
+}
+
+/* ── Grid de notas: 4 columnas en pantalla grande ── */
+.notas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+}
+
+@media (max-width: 991px) {
+  .notas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575px) {
+  .notas-grid { grid-template-columns: 1fr; }
+  .input-titulo { flex: 0 0 100%; }
+  .input-desc   { flex: 0 0 100%; }
+}
+
+/* ── Nota individual (NoteCard) ── */
+.nota-card {
+  position: relative;
+  border-radius: 3px;
+  padding: 0.85rem 0.85rem 1rem;
+  min-height: 140px;
+  box-shadow: var(--shadow-note);
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.18s, box-shadow 0.18s;
+  /* El color de fondo se aplica desde JS via style prop */
+}
+
+.nota-card:hover {
+  transform: translateY(-3px) rotate(0.4deg);
+  box-shadow: 6px 10px 22px rgba(0,0,0,0.3);
+}
+
+/* Color de fondo rotatoria — aplicado inline desde React */
+.nota-card.color-0 { background-color: var(--note-0); }
+.nota-card.color-1 { background-color: var(--note-1); }
+.nota-card.color-2 { background-color: var(--note-2); }
+.nota-card.color-3 { background-color: var(--note-3); }
+.nota-card.color-4 { background-color: var(--note-4); }
+.nota-card.importante { background-color: var(--note-importante); color: #fff; }
+
+/* ── Botón X eliminar ── */
+.btn-eliminar {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.2rem;
+  transition: color 0.15s;
+}
+
+.nota-card.importante .btn-eliminar { color: rgba(255,255,255,0.6); }
+.btn-eliminar:hover { color: #000; }
+.nota-card.importante .btn-eliminar:hover { color: #fff; }
+
+/* ── Título de la nota ── */
+.nota-titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  padding-right: 1.4rem;  /* espacio para la X */
+  color: #212121;
+  word-break: break-word;
+}
+
+.nota-card.importante .nota-titulo { color: #fff; }
+
+/* ── Descripción de la nota ── */
+.nota-desc {
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.nota-card.importante .nota-desc { color: rgba(255,255,255,0.92); }
+
+/* ── Contador de notas ── */
+.notas-contador {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.78rem;
+  margin-top: 0.8rem;
+  text-align: right;
+  padding-right: 0.4rem;
+}
