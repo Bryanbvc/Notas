@@ -60,7 +60,7 @@ function App() {
     <div>
       {/* Encabezado con título y formulario */}
       <header className="app-header">
-        <h1 className="app-title">Post It Simulator!</h1>
+        <h1 className="app-title"> Notas adhesivas </h1>
         <NoteForm onAgregar={agregarNota} />
       </header>
 
